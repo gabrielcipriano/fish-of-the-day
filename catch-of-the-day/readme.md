@@ -1,21 +1,19 @@
-{
-  "name": "cotd",
-  "version": "0.0.1",
-  "private": true,
-  "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "concurrently": "4.1.0",
-    "react-scripts": "3.4.1"
+DEPENDECIES ON PACKAGE.JSON EXPLAINED:
+
+"devDependencies": { //NECESSARY TO RUN LOCALLY
+    "concurrently": "4.1.0", 
+    "react-scripts": "3.4.1" //DOES THE COMPILING AND TRANSPILING OF THE JSX CODE
   },
-  "dependencies": {
-    "autoprefixer-stylus": "0.14.0",
-    "firebase": "^7.14.2",
-    "prop-types": "^15.6.0",
-    "re-base": "4.0.0",
+  "dependencies": { 
+    "autoprefixer-stylus": "0.14.0", //styling
+    "stylus": "0.54.5", //Missing?
+    "firebase": "^7.6.0", //connect to the database
+    "prop-types": "^15.6.0", //specify what data looks like
+    "re-base": "4.0.0", //connect to firebase
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.2.2",
-    "react-transition-group": "^2.2.1",
+    "react-transition-group": "^2.2.1", //have nice litte animations            
     "serve": "^10.1.2",
     "stylus": "0.54.5"
   },
@@ -33,9 +31,5 @@
     ">0.2%",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "description": "DEPENDECIES ON PACKAGE.JSON EXPLAINED:",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC"
+  ]
 }
