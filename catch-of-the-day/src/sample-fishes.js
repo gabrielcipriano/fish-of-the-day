@@ -1,5 +1,5 @@
 // This is just some sample data so you don't have to think of your own!
-const fishes = {
+export const fishes = {
   fish1: {
     name: "Pacific Halibut",
     image: "/images/hali.jpg",
