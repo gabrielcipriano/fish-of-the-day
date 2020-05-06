@@ -1,14 +1,16 @@
 export function formatPrice(cents) {
-  return (cents / 100).toLocaleString("en-US", {
+  return (cents/100).toLocaleString("en-US",{
     style: "currency",
     currency: "USD"
-  });
+  })
 }
 
 export function rando(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// Slug the part of an URL which
+// identifies a page using human-readable keywords
 export function slugify(text) {
   return text
     .toString()
@@ -16,8 +18,8 @@ export function slugify(text) {
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "");
+    .replace(/^-+/g, "")
+    .replace(/-+$/g, "")
 }
 
 export function getFunName() {
@@ -79,19 +81,15 @@ export function getFunName() {
     "potatoes",
     "tomatoes",
     "cacti",
-    "foci",
     "fungi",
-    "nuclei",
-    "syllabuses",
     "analyses",
     "diagnoses",
     "oases",
     "theses",
     "crises",
     "phenomena",
-    "criteria",
-    "data"
+    "criteria"
   ];
 
-  return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
+  return `${rando(adjectives)} ${rando(adjectives)} ${rando(nouns)}`;
 }
