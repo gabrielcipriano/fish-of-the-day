@@ -17,6 +17,16 @@ class App extends React.Component {
     })
   }
 
+  addToOrder = (key) => {
+    //take the copy
+    const order = { ...this.state.order };
+    //add or increment
+    order[key] = order[key] + 1 || 1;
+    //set order state
+    this.setState({
+      order: order
+    })
+  }
   addFish = fish =>{ //How to update a STATE in react?
     //1. take a copy of the existing object in state
     const fishes = { ...this.state.fishes};
@@ -34,10 +44,17 @@ class App extends React.Component {
         <div className="menu">
           <Header tagline="Fresh Seafood Market"/>{/*calls the Header function */}
           <ul className="fishes">
-            { Object.keys(this.state.fishes).map(key => <Fish key={key} details={ this.state.fishes[key]} /> ) }
+            { Object.keys(this.state.fishes).map(key => (
+              <Fish
+                key={key}
+                index={key}
+                addToOrder={this.addToOrder}
+                details={ this.state.fishes[key]}
+              />
+            )) }
           </ul>
         </div>
-        <Order/> {/*calls a Order class instance */}
+        <Order {...this.state} /> {/*calls a Order class instance */}
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={ this.loadSampleFishes }
