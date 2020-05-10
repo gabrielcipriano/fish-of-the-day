@@ -14,11 +14,40 @@ class App extends React.Component {
 
   componentDidMount(){
     const { params } = this.props.match;
+
+    //own solution pt 2 reinstate fishes
+    const localFishesRef = localStorage.getItem(params.storeId+"-fishes");
+    if (localFishesRef) {
+      this.setState({
+        fishes: JSON.parse(localFishesRef)
+      })
+    }
+    //first reinstate ou r localStorage
+    const localStorageRef = localStorage.getItem(params.storeId);
+    if(localStorageRef) {
+      this.setState({ order: JSON.parse(localStorageRef)})
+    }
+
+
     this.ref = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: "fishes"
     });
   }
+
+  componentDidUpdate(){
+    localStorage.setItem(
+      this.props.match.params.storeId,
+      JSON.stringify(this.state.order)
+    );
+
+    //own solution pt1 reinstate fishes
+    localStorage.setItem(
+      this.props.match.params.storeId + "-fishes",
+      JSON.stringify(this.state.fishes)
+    );
+  }
+
   componentWillUnmount(){
     console.log("test");
     base.removeBinding(this.ref);
