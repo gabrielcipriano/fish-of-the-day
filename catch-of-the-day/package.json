@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "concurrently": "4.1.0",
     "react-scripts": "3.4.1"
   },
@@ -36,6 +35,6 @@
   ],
   "description": "DEPENDECIES ON PACKAGE.JSON EXPLAINED:",
   "main": "index.js",
-  "author": "",
+  "author": "Gabriel Cipriano",
   "license": "ISC"
 }
