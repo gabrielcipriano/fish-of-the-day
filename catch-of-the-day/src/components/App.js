@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
@@ -13,37 +14,39 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const { params } = this.props.match;
+    const { match } = this.props;
 
     // own solution pt 2 reinstate fishes
-    const localFishesRef = localStorage.getItem(`${params.storeId}-fishes`);
+    const localFishesRef = localStorage.getItem(
+      `${match.params.storeId}-fishes`
+    );
     if (localFishesRef) {
       this.setState({
         fishes: JSON.parse(localFishesRef),
       });
     }
     // first reinstate ou r localStorage
-    const localStorageRef = localStorage.getItem(params.storeId);
+    const localStorageRef = localStorage.getItem(match.params.storeId);
     if (localStorageRef) {
       this.setState({ order: JSON.parse(localStorageRef) });
     }
 
-    this.ref = base.syncState(`${params.storeId}/fishes`, {
+    this.ref = base.syncState(`${match.params.storeId}/fishes`, {
       context: this,
       state: 'fishes',
     });
   }
 
   componentDidUpdate() {
-    localStorage.setItem(
-      this.props.match.params.storeId,
-      JSON.stringify(this.state.order)
-    );
+    const { match } = this.props;
+    const { order, fishes } = this.state;
+
+    localStorage.setItem(match.params.storeId, JSON.stringify(order));
 
     // own solution pt1 reinstate fishes
     localStorage.setItem(
-      `${this.props.match.params.storeId}-fishes`,
-      JSON.stringify(this.state.fishes)
+      `${match.params.storeId}-fishes`,
+      JSON.stringify(fishes)
     );
   }
 
@@ -60,40 +63,43 @@ class App extends React.Component {
 
   addToOrder = key => {
     // take the copy
-    const order = { ...this.state.order };
+    const { order } = this.state;
     // add or increment
     order[key] = order[key] + 1 || 1;
     // set order state
-    this.setState({
-      order,
-    });
+    this.setState({ order });
   };
 
   addFish = fish => {
     // How to update a STATE in react?
     // 1. take a copy of the existing object in state
-    const fishes = { ...this.state.fishes };
+    const { fishes } = this.state;
     // 2. Add our new fish to that fishes variable
     fishes[`fish${Date.now()}`] = fish;
     // 3. set the new fishes object to state
-    this.setState({
-      fishes,
-    });
+    this.setState({ fishes });
+  };
+
+  updateFish = (key, updatedFish) => {
+    const { fishes } = this.state;
+    fishes[key] = updatedFish;
+    this.setState({ fishes });
   };
 
   render() {
+    const { fishes } = this.state;
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Fresh Seafood Market" />
           {/* calls the Header function */}
           <ul className="fishes">
-            {Object.keys(this.state.fishes).map(key => (
+            {Object.keys(fishes).map(key => (
               <Fish
                 key={key}
                 index={key}
                 addToOrder={this.addToOrder}
-                details={this.state.fishes[key]}
+                details={fishes[key]}
               />
             ))}
           </ul>
@@ -101,12 +107,17 @@ class App extends React.Component {
         <Order {...this.state} /> {/* calls a Order class instance */}
         <Inventory
           addFish={this.addFish}
+          updateFish={this.updateFish}
           loadSampleFishes={this.loadSampleFishes}
-          fishes={this.state.fishes}
+          fishes={fishes}
         />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  match: PropTypes.object,
+};
 
 export default App;

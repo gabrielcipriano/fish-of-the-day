@@ -65,7 +65,7 @@ class AddFishForm extends Component {
 }
 
 AddFishForm.propTypes = {
-  addFish: PropTypes.string.isRequired,
+  addFish: PropTypes.func.isRequired,
 };
 
 export default AddFishForm;
