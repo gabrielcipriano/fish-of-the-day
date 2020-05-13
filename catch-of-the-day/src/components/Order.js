@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers';
 
 class Order extends Component {
   renderOrder = key => {
-    const fish = this.props.fishes[key];
-    const count = this.props.order[key];
+    const { fishes, order } = this.props;
+    const fish = fishes[key];
+    const count = order[key];
     const isAvailable = fish && fish.status === 'available';
 
     if (!isAvailable) {
@@ -23,10 +25,11 @@ class Order extends Component {
   };
 
   render() {
-    const orderIds = Object.keys(this.props.order);
+    const { order, fishes } = this.props;
+    const orderIds = Object.keys(order);
     const total = orderIds.reduce((prevTotal, key) => {
-      const fish = this.props.fishes[key];
-      const count = this.props.order[key];
+      const fish = fishes[key];
+      const count = order[key];
       const isAvailable = fish && fish.status === 'available';
       return isAvailable ? prevTotal + count * fish.price : prevTotal;
     }, 0);
@@ -42,5 +45,10 @@ class Order extends Component {
     );
   }
 }
+
+Order.propTypes = {
+  order: PropTypes.object.isRequired,
+  fishes: PropTypes.object.isRequired,
+};
 
 export default Order;

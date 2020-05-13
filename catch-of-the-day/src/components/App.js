@@ -97,7 +97,7 @@ class App extends React.Component {
             {Object.keys(fishes).map(key => (
               <Fish
                 key={key}
-                index={key}
+                keyValue={key}
                 addToOrder={this.addToOrder}
                 details={fishes[key]}
               />

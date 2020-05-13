@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers';
 
 class Fish extends Component {
   handleClick = () => {
-    this.props.addToOrder(this.props.index);
+    const { addToOrder, keyValue } = this.props;
+    addToOrder(keyValue);
   };
 
   render() {
-    const { image, name, price, desc, status } = this.props.details;
+    const { details } = this.props;
+    const { image, name, price, desc, status } = details;
     const isAvailable = status === 'available';
     return (
       <li className="menu-fish">
@@ -17,12 +20,22 @@ class Fish extends Component {
           <span className="price">{formatPrice(price)}</span>
         </h3>
         <p>{desc}</p>
-        <button disabled={!isAvailable} onClick={this.handleClick}>
+        <button
+          type="button"
+          disabled={!isAvailable}
+          onClick={this.handleClick}
+        >
           {isAvailable ? 'Add to cart' : 'Sold Out!'}
         </button>
       </li>
     );
   }
 }
+
+Fish.propTypes = {
+  addToOrder: PropTypes.func.isRequired,
+  keyValue: PropTypes.string.isRequired,
+  details: PropTypes.object.isRequired,
+};
 
 export default Fish;
