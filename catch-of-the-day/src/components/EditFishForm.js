@@ -14,7 +14,7 @@ class EditFishForm extends Component {
   };
 
   render() {
-    const { fish } = this.props;
+    const { fish, deleteFish, keyValue } = this.props;
 
     return (
       <div className="fish-edit">
@@ -46,6 +46,9 @@ class EditFishForm extends Component {
           onChange={this.handleChange}
           value={fish.image}
         />
+        <button type="button" onClick={() => deleteFish(keyValue)}>
+          Remove Fish
+        </button>
       </div>
     );
   }
@@ -54,6 +57,7 @@ class EditFishForm extends Component {
 EditFishForm.propTypes = {
   fish: PropTypes.object.isRequired,
   updateFish: PropTypes.func.isRequired,
+  deleteFish: PropTypes.func.isRequired,
   keyValue: PropTypes.string.isRequired,
 };
 

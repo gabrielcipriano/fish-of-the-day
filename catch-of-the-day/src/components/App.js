@@ -80,6 +80,12 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+  deleteFish = key => {
+    const { fishes } = this.state;
+    fishes[key] = null;
+    this.setState({ fishes });
+  };
+
   updateFish = (key, updatedFish) => {
     const { fishes } = this.state;
     fishes[key] = updatedFish;
@@ -108,6 +114,7 @@ class App extends React.Component {
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={fishes}
         />

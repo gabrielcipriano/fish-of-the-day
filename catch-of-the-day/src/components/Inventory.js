@@ -5,7 +5,13 @@ import EditFishForm from './EditFishForm';
 
 class Inventory extends Component {
   render() {
-    const { fishes, addFish, loadSampleFishes, updateFish } = this.props;
+    const {
+      fishes,
+      addFish,
+      loadSampleFishes,
+      updateFish,
+      deleteFish,
+    } = this.props;
     return (
       <div className="inventory">
         <h2>Inventory</h2>
@@ -15,6 +21,7 @@ class Inventory extends Component {
             keyValue={key}
             fish={fishes[key]}
             updateFish={updateFish}
+            deleteFish={deleteFish}
           />
         ))}
         <AddFishForm addFish={addFish} />
@@ -31,6 +38,7 @@ Inventory.propTypes = {
   loadSampleFishes: PropTypes.func.isRequired,
   fishes: PropTypes.object.isRequired,
   updateFish: PropTypes.func.isRequired,
+  deleteFish: PropTypes.func.isRequired,
 };
 
 export default Inventory;
