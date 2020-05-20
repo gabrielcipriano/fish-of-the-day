@@ -1,26 +1,54 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { formatPrice } from '../helpers';
 
 class Order extends Component {
   renderOrder = key => {
-    const { fishes, order } = this.props;
+    const { fishes, order, deleteFromOrder } = this.props;
     const fish = fishes[key];
     const count = order[key];
     const isAvailable = fish && fish.status === 'available';
 
+    const transitionOptions = {
+      classNames: 'order',
+      key,
+      timeout: { enter: 400, exit: 400 },
+    };
+
     if (!isAvailable) {
       return (
-        <li key={key}>
-          Sorry {fish ? fish.name : 'fish'} is no longer available
-        </li>
+        <CSSTransition {...transitionOptions}>
+          <li key={key}>
+            Sorry {fish ? fish.name : 'fish'} is no longer available
+            <button type="button" onClick={() => deleteFromOrder(key)}>
+              &times;
+            </button>
+          </li>
+        </CSSTransition>
       );
     }
     return (
-      <li key={key}>
-        {count}kg {`${fish.name} `}
-        {formatPrice(count * fish.price)}
-      </li>
+      <CSSTransition {...transitionOptions}>
+        <li key={key}>
+          <span>
+            <TransitionGroup component="span" className="count">
+              <CSSTransition
+                classNames="count"
+                key={count}
+                timeout={{ enter: 400, exit: 400 }}
+              >
+                <span>{count}</span>
+              </CSSTransition>
+            </TransitionGroup>
+            kg {`${fish.name} `}
+            {formatPrice(count * fish.price)}
+            <button type="button" onClick={() => deleteFromOrder(key)}>
+              &times;
+            </button>
+          </span>
+        </li>
+      </CSSTransition>
     );
   };
 
@@ -37,7 +65,9 @@ class Order extends Component {
     return (
       <div className="Order-wrap">
         <h2>Your Order</h2>
-        <ul className="order">{orderIds.map(this.renderOrder)}</ul>
+        <TransitionGroup component="ul" className="order">
+          {orderIds.map(this.renderOrder)}
+        </TransitionGroup>
         <div className="total">
           <strong>{formatPrice(total)}</strong>
         </div>
@@ -49,6 +79,7 @@ class Order extends Component {
 Order.propTypes = {
   order: PropTypes.object.isRequired,
   fishes: PropTypes.object.isRequired,
+  deleteFromOrder: PropTypes.func.isRequired,
 };
 
 export default Order;

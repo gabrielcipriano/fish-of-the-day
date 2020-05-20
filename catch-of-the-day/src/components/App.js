@@ -70,6 +70,13 @@ class App extends React.Component {
     this.setState({ order });
   };
 
+  deleteFromOrder = key => {
+    const { order } = this.state;
+    order[key] = null;
+    delete order[key];
+    this.setState({ order });
+  };
+
   addFish = fish => {
     // How to update a STATE in react?
     // 1. take a copy of the existing object in state
@@ -110,7 +117,8 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order {...this.state} /> {/* calls a Order class instance */}
+        <Order {...this.state} deleteFromOrder={this.deleteFromOrder} />{' '}
+        {/* calls a Order class instance */}
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
