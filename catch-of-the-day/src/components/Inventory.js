@@ -4,6 +4,20 @@ import AddFishForm from './AddFishForm';
 import EditFishForm from './EditFishForm';
 
 class Inventory extends Component {
+  static propTypes = {
+    addFish: PropTypes.func.isRequired,
+    loadSampleFishes: PropTypes.func.isRequired,
+    fishes: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      desc: PropTypes.string,
+      status: PropTypes.string,
+    }).isRequired,
+    updateFish: PropTypes.func.isRequired,
+    deleteFish: PropTypes.func.isRequired,
+  };
+
   render() {
     const {
       fishes,
@@ -32,13 +46,5 @@ class Inventory extends Component {
     );
   }
 }
-
-Inventory.propTypes = {
-  addFish: PropTypes.func.isRequired,
-  loadSampleFishes: PropTypes.func.isRequired,
-  fishes: PropTypes.object.isRequired,
-  updateFish: PropTypes.func.isRequired,
-  deleteFish: PropTypes.func.isRequired,
-};
 
 export default Inventory;

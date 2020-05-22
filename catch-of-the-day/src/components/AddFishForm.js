@@ -12,6 +12,10 @@ class AddFishForm extends Component {
 
   imageRef = React.createRef();
 
+  static propTypes = {
+    addFish: PropTypes.func.isRequired,
+  };
+
   createFish = event => {
     // prevents form from submitting
     event.preventDefault();
@@ -63,9 +67,5 @@ class AddFishForm extends Component {
     );
   }
 }
-
-AddFishForm.propTypes = {
-  addFish: PropTypes.func.isRequired,
-};
 
 export default AddFishForm;

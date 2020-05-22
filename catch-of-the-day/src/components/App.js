@@ -13,6 +13,10 @@ class App extends React.Component {
     order: {},
   };
 
+  static propTypes = {
+    match: PropTypes.object,
+  };
+
   componentDidMount() {
     const { match } = this.props;
 
@@ -130,9 +134,5 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  match: PropTypes.object,
-};
 
 export default App;

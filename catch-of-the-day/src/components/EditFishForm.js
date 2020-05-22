@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class EditFishForm extends Component {
+  static propTypes = {
+    fish: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      desc: PropTypes.string,
+      status: PropTypes.string,
+    }).isRequired,
+    updateFish: PropTypes.func.isRequired,
+    deleteFish: PropTypes.func.isRequired,
+    keyValue: PropTypes.string.isRequired,
+  };
+
   handleChange = event => {
     const { fish, updateFish, keyValue } = this.props;
     // update that fish
@@ -53,12 +66,5 @@ class EditFishForm extends Component {
     );
   }
 }
-
-EditFishForm.propTypes = {
-  fish: PropTypes.object.isRequired,
-  updateFish: PropTypes.func.isRequired,
-  deleteFish: PropTypes.func.isRequired,
-  keyValue: PropTypes.string.isRequired,
-};
 
 export default EditFishForm;

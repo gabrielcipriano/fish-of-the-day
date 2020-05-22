@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers';
 
 class Fish extends Component {
+  static propTypes = {
+    addToOrder: PropTypes.func.isRequired,
+    keyValue: PropTypes.string.isRequired,
+    details: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      desc: PropTypes.string,
+      status: PropTypes.string,
+    }).isRequired,
+  };
+
   handleClick = () => {
     const { addToOrder, keyValue } = this.props;
     addToOrder(keyValue);
@@ -31,11 +43,5 @@ class Fish extends Component {
     );
   }
 }
-
-Fish.propTypes = {
-  addToOrder: PropTypes.func.isRequired,
-  keyValue: PropTypes.string.isRequired,
-  details: PropTypes.object.isRequired,
-};
 
 export default Fish;

@@ -5,6 +5,10 @@ import { getFunName, slugify } from '../helpers';
 class StorePicker extends React.Component {
   myInput = React.createRef();
 
+  propTypes = {
+    history: PropTypes.object,
+  };
+
   goToStore = event => {
     const { history } = this.props;
     // 1. Stop the form from submitting
@@ -32,9 +36,5 @@ class StorePicker extends React.Component {
     );
   }
 }
-
-StorePicker.propTypes = {
-  history: PropTypes.object,
-};
 
 export default StorePicker;
