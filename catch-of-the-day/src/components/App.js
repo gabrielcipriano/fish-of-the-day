@@ -105,6 +105,8 @@ class App extends React.Component {
 
   render() {
     const { fishes } = this.state;
+    const { match } = this.props;
+
     return (
       <div className="catch-of-the-day">
         <div className="menu">
@@ -121,14 +123,14 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order {...this.state} deleteFromOrder={this.deleteFromOrder} />{' '}
-        {/* calls a Order class instance */}
+        <Order {...this.state} deleteFromOrder={this.deleteFromOrder} />
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
           deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={fishes}
+          storeId={match.params.storeId}
         />
       </div>
     );
