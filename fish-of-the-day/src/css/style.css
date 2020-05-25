@@ -79,6 +79,15 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
+a {
+  width: 100%!important;
+  font: 400 11px system-ui;
+  padding: 1px 7px 2px;
+  color: buttontext;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+}
 a:focus {
   outline: thin dotted;
 }
@@ -476,7 +485,8 @@ ul.order li span.count span {
   margin-right: 1rem;
 }
 button,
-input[type=submit] {
+input[type=submit],
+a {
   text-transform: uppercase;
   background: none;
   border: 1px solid #000;
@@ -488,23 +498,27 @@ input[type=submit] {
   z-index: 2;
 }
 button[disabled],
-input[type=submit][disabled] {
+input[type=submit][disabled],
+a[disabled] {
   color: #d12028;
   background: #fff;
   border-color: #d12028;
   transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
 }
 button[disabled]:hover,
-input[type=submit][disabled]:hover {
+input[type=submit][disabled]:hover,
+a[disabled]:hover {
   color: #d12028;
   cursor: not-allowed;
 }
 button[disabled]:after,
-input[type=submit][disabled]:after {
+input[type=submit][disabled]:after,
+a[disabled]:after {
   display: none;
 }
 button:after,
-input[type=submit]:after {
+input[type=submit]:after,
+a:after {
   content: '';
   z-index: -1;
   display: block;
@@ -518,31 +532,40 @@ input[type=submit]:after {
 }
 button:hover,
 input[type=submit]:hover,
+a:hover,
 button:focus,
-input[type=submit]:focus {
+input[type=submit]:focus,
+a:focus {
   color: #fff;
   outline: 0;
 }
 button:hover:after,
 input[type=submit]:hover:after,
+a:hover:after,
 button:focus:after,
-input[type=submit]:focus:after {
+input[type=submit]:focus:after,
+a:focus:after {
   height: 100%;
 }
 button.warning:after,
-input[type=submit].warning:after {
+input[type=submit].warning:after,
+a.warning:after {
   background: #d12028;
 }
 button.success:after,
-input[type=submit].success:after {
+input[type=submit].success:after,
+a.success:after {
   background: #2dc22d;
 }
 button.github,
 input[type=submit].github,
+a.github,
 button.facebook,
 input[type=submit].facebook,
+a.facebook,
 button.twitter,
-input[type=submit].twitter {
+input[type=submit].twitter,
+a.twitter {
   border: 0;
   display: block;
   margin-bottom: 2rem;
@@ -551,27 +574,33 @@ input[type=submit].twitter {
   padding: 2rem;
 }
 button.github,
-input[type=submit].github {
+input[type=submit].github,
+a.github {
   background: #82d465;
 }
 button.github:after,
-input[type=submit].github:after {
+input[type=submit].github:after,
+a.github:after {
   background: #5cc437;
 }
 button.facebook,
-input[type=submit].facebook {
+input[type=submit].facebook,
+a.facebook {
   background: #3864a3;
 }
 button.facebook:after,
-input[type=submit].facebook:after {
+input[type=submit].facebook:after,
+a.facebook:after {
   background: #2d5082;
 }
 button.twitter,
-input[type=submit].twitter {
+input[type=submit].twitter,
+a.twitter {
   background: #5ea9dd;
 }
 button.twitter:after,
-input[type=submit].twitter:after {
+input[type=submit].twitter:after,
+a.twitter:after {
   background: #2c8dd0;
 }
 .store-selector {

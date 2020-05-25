@@ -32,6 +32,12 @@ class StorePicker extends React.Component {
           defaultValue={getFunName()}
         />
         <button type="submit">Visit Store </button>
+        <a
+          href="https://react-market.netlify.app/store/example"
+          className="button"
+        >
+          Visit sample store
+        </a>
       </form>
     );
   }
