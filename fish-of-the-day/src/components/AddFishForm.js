@@ -60,7 +60,7 @@ class AddFishForm extends Component {
           name="image"
           ref={this.imageRef}
           type="text"
-          placeholder="Image"
+          placeholder="Image URL"
         />
         <button type="submit">Add Fish</button>
       </form>
