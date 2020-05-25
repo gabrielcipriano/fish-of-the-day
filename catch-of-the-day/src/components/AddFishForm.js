@@ -25,7 +25,7 @@ class AddFishForm extends Component {
     // create fish and update state
     const fish = {
       name: this.nameRef.current.value,
-      price: parseFloat(this.priceRef.current.value),
+      price: parseFloat(this.priceRef.current.value) || 0,
       status: this.statusRef.current.value,
       desc: this.descRef.current.value,
       image: this.imageRef.current.value,
