@@ -1,3 +1,20 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  line-height: 0rem;
+  background-color:		#C0C0C0;
+  color: white;
+  text-align: center;
+}
+.footer a{
+  font: 400 10px;
+  border: none;
+  text-transform: none;
+  /* font-size: 1.3rem; */
+}
+
 .order-enter {
   transform: translateX(-120%);
   transition: 400ms;
